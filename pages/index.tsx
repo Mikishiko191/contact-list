@@ -3,10 +3,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import faker from 'faker'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import useSWR from 'swr'
 
 type Inputs = {
    name: string
    email: string
+}
+
+const fetchUsers = () => {
+   return fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`).then((response) => response.json())
 }
 
 const Home: NextPage = () => {
@@ -16,6 +21,13 @@ const Home: NextPage = () => {
       formState: { errors },
    } = useForm<Inputs>()
    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+
+   const { data, error } = useSWR('users', fetchUsers)
+
+   if (error) return <div>failed to load</div>
+   if (!data) return <div>loading...</div>
+
+   console.log(data)
 
    return (
       <div className="bg-gray-50">
@@ -64,5 +76,17 @@ const Home: NextPage = () => {
       </div>
    )
 }
+
+// export async function getServerSideProps() {
+//    // Server-side requests are mocked by `mocks/server.js`.
+//    const res = await fetch('http://my.backend/reviews')
+//    const book = await res.json()
+
+//    return {
+//       props: {
+//          book,
+//       },
+//    }
+// }
 
 export default Home

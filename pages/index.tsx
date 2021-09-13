@@ -2,32 +2,30 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import faker from 'faker'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import useSWR from 'swr'
+// import { useForm, SubmitHandler } from 'react-hook-form'
+// import useSWR from 'swr'
 
 type Inputs = {
    name: string
    email: string
 }
 
-const fetchUsers = () => {
-   return fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`).then((response) => response.json())
-}
+// const fetchUsers = () => {
+//    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`).then((response) => response.json())
+// }
 
 const Home: NextPage = () => {
-   const {
-      register,
-      handleSubmit,
-      formState: { errors },
-   } = useForm<Inputs>()
-   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+   // const {
+   //    register,
+   //    handleSubmit,
+   //    formState: { errors },
+   // } = useForm<Inputs>()
+   // const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
-   const { data, error } = useSWR('users', fetchUsers)
+   // const { data, error } = useSWR('users', fetchUsers)
 
-   if (error) return <div>failed to load</div>
-   if (!data) return <div>loading...</div>
-
-   console.log(data)
+   // if (error) return <div>failed to load</div>
+   // if (!data) return <div>loading...</div>
 
    return (
       <div className="bg-gray-50">
@@ -36,6 +34,8 @@ const Home: NextPage = () => {
             <meta name="description" content="Find &amp; your favorite contact" />
             <link rel="icon" href="/favicon.ico" />
          </Head>
+
+         {faker.name.jobTitle()}
 
          <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
             <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -62,17 +62,14 @@ const Home: NextPage = () => {
             </div>
          </div>
          <Image width={60} height={60} src={faker.image.avatar()} alt="Picture of the author" />
-         <form onSubmit={handleSubmit(onSubmit)}>
-            {/* register your input into the hook by invoking the "register" function */}
+         {/* <form onSubmit={handleSubmit(onSubmit)}>
             <input defaultValue="test" {...register('name')} />
 
-            {/* include validation with required or other standard HTML validation rules */}
             <input {...register('email', { required: true })} />
-            {/* errors will return when field validation fails  */}
             {errors.email && <span>This field is required</span>}
 
             <input type="submit" />
-         </form>
+         </form> */}
       </div>
    )
 }

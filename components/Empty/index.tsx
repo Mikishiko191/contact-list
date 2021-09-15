@@ -1,5 +1,5 @@
 import { PlusIcon } from '@heroicons/react/solid'
-import { User } from '../../mocks/Fake_DATA'
+import { User } from '../../mocks/DTO'
 
 interface EmptyProps {
    users: User[]

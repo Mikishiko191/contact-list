@@ -1,5 +1,5 @@
 import create from 'zustand'
-import { User } from '../mocks/Fake_DATA'
+import { User } from '../mocks/DTO'
 
 export interface UserStore {
    userState: User[]

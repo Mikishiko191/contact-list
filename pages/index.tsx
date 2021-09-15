@@ -13,6 +13,7 @@ import { UserList } from '../components/UserList'
 import { MobileSideBar } from '../components/MobileSideBar'
 import { Conformational } from '../components/Modals/Conformational'
 import { UpdateCreateUser } from '../components/UpdateCreateUser'
+import { Loader } from '../components/Loader'
 
 // Store
 import { useConfirmModalStore } from '../store/confirmModal'
@@ -23,7 +24,7 @@ import { useSearchResultStore } from '../store/searchResult'
 
 // Mocks
 import { url } from '../mocks/handlers'
-import { User } from '../mocks/Fake_DATA'
+import { User } from '../mocks/DTO'
 
 const Home: NextPage = () => {
    const { mutate } = useSWRConfig()
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
    const closeModal = useConfirmModalStore((state) => state.closeConformationalModal)
    const { createAditState, onHandleChangeCreateEditState } = useEditCreateStore((state) => state)
    const { selectedUserState, onHandleChangeUserState } = useSelectUserStore((state) => state)
-   const { searchResult } = useSearchResultStore((state) => state)
+   const { searchResult, onHandleSearchResult } = useSearchResultStore((state) => state)
    const { userState, userIsLoading, userErrorWhileFetch, onHandleGetUser, setUserIsLoading, setUserErrorWhileFetch } =
       useUserStore((state) => state)
 
@@ -53,7 +54,7 @@ const Home: NextPage = () => {
    }, [])
 
    if (userErrorWhileFetch) return <div>failed to load</div>
-   if (userIsLoading) return <div>loading...</div>
+   if (userIsLoading) return <Loader />
 
    const onHandlePressUser = (user: User) => {
       onHandleChangeUserState(user)
@@ -83,6 +84,7 @@ const Home: NextPage = () => {
                })
                onHandleGetUser(resData)
                onHandleChangeUserState(null)
+               onHandleSearchResult(null)
                closeModal()
             })
             .catch(() => {
@@ -96,6 +98,10 @@ const Home: NextPage = () => {
                })
             })
       })
+   }
+
+   const onHandleResetList = () => {
+      onHandleSearchResult(null)
    }
 
    const isUserSearching = !!searchResult ? searchResult : userState
@@ -152,10 +158,21 @@ const Home: NextPage = () => {
 
                   <button
                      onClick={() => onHandleChangeCreateEditState('CREATE')}
-                     className="absolute bottom-3 right-3 flex align-middle justify-center bg-green-500 text-white pt-2 pb-2 pl-2 pr-2 rounded-md font-medium z-50"
+                     type="button"
+                     className="absolute z-50 bottom-3 right-3 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                   >
-                     <PlusIcon className="h-6 w-6 text-white mr-1" aria-hidden="true" /> Add contact
+                     <PlusIcon className="h-5 w-5 text-white mr-1" aria-hidden="true" /> Add contact
                   </button>
+
+                  {!!searchResult?.length && !!isUserSearching.length && (
+                     <button
+                        type="button"
+                        className="absolute z-50 bottom-3 left-3  inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        onClick={onHandleResetList}
+                     >
+                        Reset list
+                     </button>
+                  )}
                </aside>
             </div>
          </div>

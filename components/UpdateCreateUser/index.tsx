@@ -1,7 +1,9 @@
 import { toast } from 'react-toastify'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
-import { Groupe, User } from '../../mocks/Fake_DATA'
+// DTO
+import { Groupe, User } from '../../mocks/DTO'
+
 import { url } from '../../mocks/handlers'
 
 // Store
@@ -9,6 +11,7 @@ import { useEditCreateStore } from '../../store/editCreate'
 import { useSelectUserStore } from '../../store/selectUser'
 import { useSWRConfig } from 'swr'
 import { useUserStore } from '../../store/user'
+import { useSearchResultStore } from '../../store/searchResult'
 
 type Inputs = {
    id: string
@@ -25,6 +28,8 @@ const UpdateCreateUser = () => {
    const { onHandleChangeCreateEditState, createAditState } = useEditCreateStore((state) => state)
    const { selectedUserState, onHandleChangeUserState } = useSelectUserStore((state) => state)
    const { onHandleGetUser, userState } = useUserStore((state) => state)
+   const { onHandleSearchResult } = useSearchResultStore((state) => state)
+
    const { register, handleSubmit } = useForm<Inputs>({
       defaultValues:
          createAditState === 'EDIT'
@@ -63,6 +68,7 @@ const UpdateCreateUser = () => {
                   onHandleChangeCreateEditState(null)
                   onHandleChangeUserState(resData)
                   onHandleGetUser(merge)
+                  onHandleSearchResult(null)
                })
                .catch(() => {
                   toast.error(`Uups something went wrong. Please try again `, {
@@ -101,6 +107,7 @@ const UpdateCreateUser = () => {
                   onHandleChangeCreateEditState(null)
                   onHandleChangeUserState(findUser)
                   onHandleGetUser(resData)
+                  onHandleSearchResult(null)
                })
                .catch(() => {
                   toast.error(`Uups something went wrong. Please try again `, {

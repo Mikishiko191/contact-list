@@ -2,10 +2,12 @@ import { SearchIcon, XIcon } from '@heroicons/react/solid'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
-import { User } from '../../mocks/Fake_DATA'
+// DTO
+import { User } from '../../mocks/DTO'
 
 // Store
 import { useSearchResultStore } from '../../store/searchResult'
+import { useUserStore } from '../../store/user'
 
 interface SearchUserProps {
    users: User[]
@@ -28,6 +30,7 @@ const SearchUser = (props: SearchUserProps) => {
    const watchFields = watch('search')
 
    const { onHandleSearchResult } = useSearchResultStore((state) => state)
+   const { userState } = useUserStore((state) => state)
 
    const onSubmit: SubmitHandler<Inputs> = (data) => {
       let searchValue = data.search.toLowerCase()
@@ -39,14 +42,16 @@ const SearchUser = (props: SearchUserProps) => {
          return nameWithLastName.search(searchValue) != -1
       })
 
-      toast.success(`You successfully found ${filteredUsers.length} user${filteredUsers.length > 1 ? 's' : ''}`, {
-         position: 'top-right',
-         autoClose: 5000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-      })
+      if (!!filteredUsers.length) {
+         toast.success(`You successfully found ${filteredUsers.length} user${filteredUsers.length > 1 ? 's' : ''}`, {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+         })
+      }
 
       onHandleSearchResult(filteredUsers)
    }
@@ -60,7 +65,7 @@ const SearchUser = (props: SearchUserProps) => {
       <div className="px-6 pt-3 pb-4">
          <h2 className="text-lg font-medium text-gray-900">Directory</h2>
          <p className="mt-1 text-sm text-gray-600">
-            Search directory of {users.length} user{users.length > 0 ? 's' : ''} by name or last name
+            Search directory of {userState.length} user{userState.length > 0 ? 's' : ''} by name or last name
          </p>
          <form
             className="mt-3 flex space-x-4 sm:flex-column md:flex-column lg:flex-row"

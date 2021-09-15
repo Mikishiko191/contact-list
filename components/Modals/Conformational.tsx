@@ -1,6 +1,8 @@
 import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { User } from '../../mocks/Fake_DATA'
+
+// DTO
+import { User } from '../../mocks/DTO'
 
 // Store
 import { useConfirmModalStore } from '../../store/confirmModal'

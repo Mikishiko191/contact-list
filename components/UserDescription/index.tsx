@@ -1,6 +1,8 @@
-import { Fields, User } from '../../mocks/Fake_DATA'
 import { TrashIcon, PencilIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
+
+// DTO
+import { User } from '../../mocks/DTO'
 
 // Components
 import { Empty } from '../Empty'
@@ -48,16 +50,9 @@ const UserDescription = (props: UserDescriptionProps) => {
                               </h1>
                            </div>
                            <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                              {/* <button
-                                 type="button"
-                                 className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-                              >
-                                 <MailIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
-                                 <span>Message</span>
-                              </button> */}
                               <button
                                  type="button"
-                                 className="inline-flex justify-center bg-green-500 px-4 py-2 border border-green-300 shadow-sm text-sm font-medium rounded-md text-white hover:text-gray-600 bg-red hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                                 className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                                  onClick={() => (onHandleChangeUserState(user), onHandleChangeCreateEditState('EDIT'))}
                               >
                                  <PencilIcon
@@ -68,7 +63,7 @@ const UserDescription = (props: UserDescriptionProps) => {
                               </button>
                               <button
                                  type="button"
-                                 className="inline-flex justify-center bg-red-500 px-4 py-2 border border-red-300 shadow-sm text-sm font-medium rounded-md text-white hover:text-gray-600 bg-red hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                                 className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                                  onClick={() => onHandleRemoveUser(user)}
                               >
                                  <TrashIcon

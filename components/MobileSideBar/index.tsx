@@ -2,7 +2,8 @@ import React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
-import { User } from '../../mocks/Fake_DATA'
+// DTO
+import { User } from '../../mocks/DTO'
 
 // Components
 import { SearchUser } from '../SearchUser'

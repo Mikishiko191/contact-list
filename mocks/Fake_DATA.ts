@@ -1,14 +1,15 @@
 import faker from 'faker'
 import { v4 as uuidv4 } from 'uuid'
 
+export type Groupe = 'Family' | 'Friends' | 'School' | 'Work'
+
 export interface Fields {
    phone: string
    email: string
    title: string
    location: string
+   groupe: Groupe
 }
-
-type Groupe = 'Family' | 'Friends' | 'School' | 'Work'
 
 export interface User {
    id: string
@@ -19,7 +20,6 @@ export interface User {
    fields: Fields
    about: string
    coverImageUrl: string
-   groupe: Groupe
 }
 
 export const users: User[] = [
@@ -29,8 +29,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -49,8 +49,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -69,8 +69,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -89,8 +89,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -109,8 +109,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -129,8 +129,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -149,8 +149,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -169,8 +169,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -189,8 +189,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -209,8 +209,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -229,8 +229,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -249,8 +249,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -269,8 +269,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -289,8 +289,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -309,8 +309,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -329,8 +329,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -349,8 +349,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -369,8 +369,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -389,8 +389,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -409,8 +409,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -429,8 +429,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -449,8 +449,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -469,8 +469,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -489,8 +489,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -509,8 +509,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -529,8 +529,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -549,8 +549,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -569,8 +569,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -589,8 +589,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -609,8 +609,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -629,8 +629,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -649,8 +649,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -669,8 +669,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -689,8 +689,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -709,8 +709,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -729,8 +729,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -749,8 +749,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Family',
       fields: {
+         groupe: 'Family',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -769,8 +769,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Friends',
       fields: {
+         groupe: 'Friends',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -789,8 +789,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'School',
       fields: {
+         groupe: 'School',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),
@@ -809,8 +809,8 @@ export const users: User[] = [
       lastName: faker.name.lastName(),
       role: faker.name.jobType(),
       imageUrl: faker.image.avatar(),
-      groupe: 'Work',
       fields: {
+         groupe: 'Work',
          phone: faker.phone.phoneNumberFormat(),
          email: faker.internet.email(),
          title: faker.name.jobTitle(),

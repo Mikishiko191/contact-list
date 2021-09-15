@@ -1,14 +1,14 @@
 import create from 'zustand'
 import { User } from '../mocks/Fake_DATA'
 
-export interface ModalState {
-   searchResult: User[]
-   onHandleSearchResult: (users: User[]) => void
+export interface SearchResultState {
+   searchResult: User[] | null
+   onHandleSearchResult: (users: User[] | null) => void
 }
 
-const useStore = create<ModalState>((set) => ({
-   searchResult: [],
-   onHandleSearchResult: () => set((state) => ({ searchResult: state.searchResult })),
+const useSearchResultStore = create<SearchResultState>((set) => ({
+   searchResult: null,
+   onHandleSearchResult: (searchResult) => set(() => ({ searchResult })),
 }))
 
-export { useStore }
+export { useSearchResultStore }

@@ -1,10 +1,11 @@
 import { SearchIcon, XIcon } from '@heroicons/react/solid'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import { User } from '../../mocks/Fake_DATA'
 
 // Store
-import { useStore } from '../../store/searchResult'
+import { useSearchResultStore } from '../../store/searchResult'
 
 interface SearchUserProps {
    users: User[]
@@ -21,12 +22,12 @@ const SearchUser = (props: SearchUserProps) => {
       handleSubmit,
       watch,
       reset,
-      formState: { errors },
+      // formState: { errors },
    } = useForm<Inputs>()
 
    const watchFields = watch('search')
 
-   const searchResult = useStore((state) => state.onHandleSearchResult)
+   const { onHandleSearchResult } = useSearchResultStore((state) => state)
 
    const onSubmit: SubmitHandler<Inputs> = (data) => {
       let searchValue = data.search.toLowerCase()
@@ -38,11 +39,20 @@ const SearchUser = (props: SearchUserProps) => {
          return nameWithLastName.search(searchValue) != -1
       })
 
-      searchResult(filteredUsers)
+      toast.success(`You successfully found ${filteredUsers.length} user${filteredUsers.length > 1 ? 's' : ''}`, {
+         position: 'top-right',
+         autoClose: 5000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+      })
+
+      onHandleSearchResult(filteredUsers)
    }
 
    const onHandleClearSearch = () => {
-      searchResult(users)
+      onHandleSearchResult(null)
       reset()
    }
 

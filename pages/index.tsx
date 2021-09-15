@@ -35,8 +35,15 @@ const Home: NextPage = () => {
    const { createAditState, onHandleChangeCreateEditState } = useEditCreateStore((state) => state)
    const { selectedUserState, onHandleChangeUserState } = useSelectUserStore((state) => state)
    const { searchResult, onHandleSearchResult } = useSearchResultStore((state) => state)
-   const { userState, userIsLoading, userErrorWhileFetch, onHandleGetUser, setUserIsLoading, setUserErrorWhileFetch } =
-      useUserStore((state) => state)
+   const {
+      userState,
+      userIsLoading,
+      userErrorWhileFetch,
+      onHandleGetUser,
+      setUserIsLoading,
+      setUserErrorWhileFetch,
+      setLettersInUserNames,
+   } = useUserStore((state) => state)
 
    React.useEffect(() => {
       const fetchData = async () => {
@@ -47,7 +54,8 @@ const Home: NextPage = () => {
                return response.json()
             })
             .catch(() => setUserErrorWhileFetch(true))
-         onHandleGetUser(result)
+         onHandleGetUser(result.users)
+         setLettersInUserNames(result.lettersInUserList)
          setUserIsLoading(false)
       }
       fetchData()
@@ -74,28 +82,14 @@ const Home: NextPage = () => {
          })
             .then((res) => res.json())
             .then((resData) => {
-               toast.success(`User: ${selectedUserState?.name} successfully removed`, {
-                  position: 'top-right',
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-               })
+               toast.success(`User: ${selectedUserState?.name} successfully removed`)
                onHandleGetUser(resData)
                onHandleChangeUserState(null)
                onHandleSearchResult(null)
                closeModal()
             })
             .catch(() => {
-               toast.error(`Uups something went wrong. Please try again `, {
-                  position: 'top-right',
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-               })
+               toast.error(`Uups something went wrong. Please try again`)
             })
       })
    }

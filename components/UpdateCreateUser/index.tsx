@@ -57,28 +57,14 @@ const UpdateCreateUser = () => {
                .then((res) => res.json())
                .then((resData) => {
                   const merge = [...userState, resData]
-                  toast.success(`User ${resData.name} successfully added`, {
-                     position: 'top-right',
-                     autoClose: 5000,
-                     hideProgressBar: false,
-                     closeOnClick: true,
-                     pauseOnHover: true,
-                     draggable: true,
-                  })
+                  toast.success(`User ${resData.name} successfully added`)
                   onHandleChangeCreateEditState(null)
                   onHandleChangeUserState(resData)
                   onHandleGetUser(merge)
                   onHandleSearchResult(null)
                })
                .catch(() => {
-                  toast.error(`Uups something went wrong. Please try again `, {
-                     position: 'top-right',
-                     autoClose: 5000,
-                     hideProgressBar: false,
-                     closeOnClick: true,
-                     pauseOnHover: true,
-                     draggable: true,
-                  })
+                  toast.error(`Uups something went wrong. Please try again`)
                })
          })
       }
@@ -95,14 +81,7 @@ const UpdateCreateUser = () => {
                .then((resData) => {
                   const findUser = resData.find((user: User) => user.id === data.id)
 
-                  toast.success(`User ${resData.name} successfully updated`, {
-                     position: 'top-right',
-                     autoClose: 5000,
-                     hideProgressBar: false,
-                     closeOnClick: true,
-                     pauseOnHover: true,
-                     draggable: true,
-                  })
+                  toast.success(`User ${resData.name} successfully updated`)
 
                   onHandleChangeCreateEditState(null)
                   onHandleChangeUserState(findUser)
@@ -110,14 +89,7 @@ const UpdateCreateUser = () => {
                   onHandleSearchResult(null)
                })
                .catch(() => {
-                  toast.error(`Uups something went wrong. Please try again `, {
-                     position: 'top-right',
-                     autoClose: 5000,
-                     hideProgressBar: false,
-                     closeOnClick: true,
-                     pauseOnHover: true,
-                     draggable: true,
-                  })
+                  toast.error(`Uups something went wrong. Please try again `)
                })
          })
       }

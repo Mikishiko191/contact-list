@@ -12,7 +12,7 @@ export interface UserStore {
 
 const useUserStore = create<UserStore>((set) => ({
    userState: [],
-   userIsLoading: false,
+   userIsLoading: true,
    userErrorWhileFetch: false,
    onHandleGetUser: (userState) => set(() => ({ userState })),
    setUserIsLoading: (userIsLoading) => set(() => ({ userIsLoading })),

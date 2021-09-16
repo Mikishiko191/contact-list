@@ -13,7 +13,7 @@ import { useSWRConfig } from 'swr'
 import { useUserStore } from '../../store/user'
 import { useSearchResultStore } from '../../store/searchResult'
 
-type Inputs = {
+export type UpdateCreateUserProps = {
    id: string
    name: string
    lastName: string
@@ -30,7 +30,7 @@ const UpdateCreateUser = () => {
    const { onHandleGetUser, userState } = useUserStore((state) => state)
    const { onHandleSearchResult } = useSearchResultStore((state) => state)
 
-   const { register, handleSubmit } = useForm<Inputs>({
+   const { register, handleSubmit } = useForm<UpdateCreateUserProps>({
       defaultValues:
          createAditState === 'EDIT'
             ? {
@@ -45,7 +45,7 @@ const UpdateCreateUser = () => {
             : {},
    })
 
-   const onSubmit: SubmitHandler<Inputs> = (data) => {
+   const onSubmit: SubmitHandler<UpdateCreateUserProps> = (data) => {
       if (createAditState === 'CREATE') {
          mutate(url, async () => {
             await fetch(url, {

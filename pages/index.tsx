@@ -35,15 +35,8 @@ const Home: NextPage = () => {
    const { createAditState, onHandleChangeCreateEditState } = useEditCreateStore((state) => state)
    const { selectedUserState, onHandleChangeUserState } = useSelectUserStore((state) => state)
    const { searchResult, onHandleSearchResult } = useSearchResultStore((state) => state)
-   const {
-      userState,
-      userIsLoading,
-      userErrorWhileFetch,
-      onHandleGetUser,
-      setUserIsLoading,
-      setUserErrorWhileFetch,
-      setLettersInUserNames,
-   } = useUserStore((state) => state)
+   const { userState, userIsLoading, userErrorWhileFetch, onHandleGetUser, setUserIsLoading, setUserErrorWhileFetch } =
+      useUserStore((state) => state)
 
    React.useEffect(() => {
       const fetchData = async () => {
@@ -54,21 +47,20 @@ const Home: NextPage = () => {
                return response.json()
             })
             .catch(() => setUserErrorWhileFetch(true))
-         onHandleGetUser(result.users)
-         setLettersInUserNames(result.lettersInUserList)
+         onHandleGetUser(result)
          setUserIsLoading(false)
       }
       fetchData()
    }, [])
 
-   if (userErrorWhileFetch) return <div>failed to load</div>
-   if (userIsLoading) return <Loader />
-
-   const onHandlePressUser = (user: User) => {
+   const onHandlePressUser = React.useCallback((user: User) => {
       onHandleChangeUserState(user)
       setSidebarOpen(false)
       onHandleChangeCreateEditState(null)
-   }
+   }, [])
+
+   if (userErrorWhileFetch) return <div>failed to load</div>
+   if (userIsLoading) return <Loader />
 
    const onCloseSideBar = () => {
       setSidebarOpen(false)

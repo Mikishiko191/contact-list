@@ -3,21 +3,11 @@ import { rest } from 'msw'
 import { users } from './Fake_DATA'
 import { v4 as uuidv4 } from 'uuid'
 
-// Utils
-import { sortedLettersFromUserNames } from '../utils/sortedLettersFromUserNames'
-
 export const url = `${process.env.NEXT_PUBLIC_API_URL}/users`
 
 export const handlers = [
    rest.get(url, (req, res, ctx) => {
-      return res(
-         ctx.status(200),
-         ctx.delay(500),
-         ctx.json({
-            users,
-            lettersInUserList: sortedLettersFromUserNames(users),
-         })
-      )
+      return res(ctx.status(200), ctx.delay(500), ctx.json(users))
    }),
    rest.post(url, (req: any, res, ctx) => {
       const { data } = JSON.parse(req.body)

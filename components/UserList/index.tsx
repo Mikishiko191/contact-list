@@ -1,11 +1,16 @@
 import Image from 'next/image'
+import React from 'react'
 
 // DTO
 import { User } from '../../mocks/DTO'
 
 // Store
 import { useSearchResultStore } from '../../store/searchResult'
-import { useUserStore } from '../../store/user'
+
+// import { useWhyDidYouUpdate } from '../../hooks/useWhyDidYouUpdate'
+
+// Utils
+import { sortedLettersFromUserNames } from '../../utils/sortedLettersFromUserNames'
 
 interface UserListProps {
    users: User[]
@@ -13,17 +18,19 @@ interface UserListProps {
 }
 
 const UserList = (props: UserListProps) => {
+   // useWhyDidYouUpdate('Userlist', props)
    const { onHandleSearchResult } = useSearchResultStore((state) => state)
-   const { lettersInUserNames } = useUserStore((state) => state)
    const { users, onHandlePressUser } = props
 
    const onHandleResetList = () => {
       onHandleSearchResult(null)
    }
 
+   const memoizedLetters = React.useMemo(() => sortedLettersFromUserNames(users), [users])
+
    return (
       <nav className="flex-1 min-h-0 overflow-y-auto pb-14" aria-label="Directory">
-         {lettersInUserNames.map((letter: string) => (
+         {memoizedLetters.map((letter: string) => (
             <div key={letter} className="relative">
                <div className="z-10 sticky top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500">
                   <h3>{letter}</h3>

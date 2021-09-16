@@ -10,6 +10,9 @@ import { Empty } from '../Empty'
 // Store
 import { useEditCreateStore } from '../../store/editCreate'
 
+// Hooks
+import { useWhyDidYouUpdate } from '../../hooks/useWhyDidYouUpdate'
+
 interface UserDescriptionProps {
    user: User | null
    userList: User[]
@@ -20,6 +23,7 @@ interface UserDescriptionProps {
 type StringKeys<objType extends {}> = Array<Extract<keyof objType, string>>
 
 const UserDescription = (props: UserDescriptionProps) => {
+   useWhyDidYouUpdate('UserDescription', props)
    const { user, userList, onHandleSelectUser, onHandleRemoveUser } = props
    const { onHandleChangeCreateEditState, onHandleChangeUserState } = useEditCreateStore((state) => state)
 
